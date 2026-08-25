@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #fffaf0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ff6b9d;
+            animation: bounce 2s infinite ease-in-out;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Memory Cards Section */
+        .memory-cards-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5f7 100%);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            margin-bottom: 60px;
+            font-weight: bold;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            max-width: 1200px;
+        }
+
+        .card {
+            width: 280px;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff8fb3 100%);
+            color: white;
+            border: 3px solid #ff6b9d;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe4f0 100%);
+            color: #ff6b9d;
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            border: 3px solid #ff6b9d;
+        }
+
+        .card:hover .card-front {
+            transform: scale(1.05);
+        }
+
+        /* Question Section */
+        .question-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #fff5f7 0%, #fffaf0 100%);
+        }
+
+        .question-text {
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            margin-bottom: 60px;
+            text-align: center;
+            font-weight: bold;
+            max-width: 600px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .yes-btn {
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fb3 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+            position: relative;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .yes-btn:active {
+            transform: scale(1.15);
+        }
+
+        .no-btn {
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ffc9e3 100%);
+            color: #ff6b9d;
+            border: 2px solid #ff6b9d;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            position: absolute;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff5f7 0%, #fffaf0 100%);
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.4s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .modal-text {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .modal-date {
+            font-size: 1.5rem;
+            color: #ff6b9d;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .close-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fb3 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .question-text {
+                font-size: 1.8rem;
+            }
+
+            .cards-container {
+                gap: 20px;
+            }
+
+            .card {
+                width: 220px;
+                height: 220px;
+            }
+
+            .button-container {
+                gap: 20px;
+                min-height: 150px;
+            }
+
+            .yes-btn, .no-btn {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                padding: 40px;
+                margin: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+
+            .modal-text {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.5rem;
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 200px;
+                height: 200px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .yes-btn, .no-btn {
+                width: 200px;
+                padding: 15px 30px;
+            }
+
+            .no-btn {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">A Special Surprise For You ❤️</h1>
+    </section>
+
+    <!-- Memory Cards Section -->
+    <section class="memory-cards-section">
+        <h2 class="section-title">Our Beautiful Memories</h2>
+        <div class="cards-container">
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">💝 Memory #1</div>
+                    <div class="card-back">I love the way you smile at me. It makes my heart skip a beat every single time!</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">💝 Memory #2</div>
+                    <div class="card-back">You make every moment special. Thank you for being the most wonderful person in my life!</div>
+                </div>
+            </div>
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">💝 Memory #3</div>
+                    <div class="card-back">I can't wait to create a million more memories with you. You mean everything to me! 💕</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Question Section -->
+    <section class="question-section">
+        <h2 class="question-text">Will you go on a romantic date with me this weekend? 🌹</h2>
+        <div class="button-container">
+            <button class="yes-btn" onclick="handleYes()">YES! 💕</button>
+            <button class="no-btn" id="noBtn" onmouseenter="dodgeButton()" ontouchstart="dodgeButton()">NO 😢</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="celebrationModal">
+        <div class="modal-content">
+            <h2 class="modal-title">You Made Me The Happiest! 🎉</h2>
+            <p class="modal-text">I'm so excited to spend this special weekend with you!</p>
+            <p class="modal-date">This Saturday at 7 PM 🌹</p>
+            <p class="modal-text">Dress up nicely, because I have something special planned for you!</p>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('heartsContainer').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7000);
+        }
+
+        // Create hearts continuously
+        setInterval(createHeart, 500);
+
+        // Initial hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+
+        // Dodge button logic
+        let yesClickCount = 0;
+
+        function dodgeButton() {
+            const noBtn = document.getElementById('noBtn');
+            const randomX = Math.random() * (window.innerWidth - 200);
+            const randomY = Math.random() * (window.innerHeight - 100);
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Yes button logic
+        function handleYes() {
+            yesClickCount++;
+            const yesBtn = event.target;
+            const scale = 1 + (yesClickCount * 0.1);
+            yesBtn.style.transform = `scale(${scale})`;
+
+            if (yesClickCount >= 3) {
+                createConfetti();
+                setTimeout(() => {
+                    document.getElementById('celebrationModal').classList.add('show');
+                }, 500);
+            }
+        }
+
+        // Confetti explosion
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ffb3d9', '#ff8fb3', '#ffc9e3', '#ff1493'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('celebrationModal').classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('celebrationModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('celebrationModal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
